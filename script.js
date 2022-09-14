@@ -36,14 +36,21 @@ const poll = {
   answers: new Array(4).fill(0),
   registerNewAnswer() {
     //get answer
-    const answers = Number(
+    const answer = Number(
       prompt(
         `${this.question}\n${this.options.join('\n')}\n(What is your number?)`
       )
     );
-    console.log(answers);
+    console.log(answer);
 
     //Register answer
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+    console.log(this.answers);
   },
 };
 // poll.registerNewAnswer();
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
